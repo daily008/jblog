@@ -175,6 +175,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>title: <span class="st">"Studying Data Publishing in Group Research: Taking Data in Brief as a Case"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>description: <span class="st">"Final submission for the final assignment"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>author: <span class="st">"Tianji Jiang"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>date: <span class="st">"03/10/2023"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>date<span class="op">-</span>modified: <span class="st">"03/20/2023"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Tianji Jiang, 3/20/2023, Studying Data Publishing in Group Research: Taking Data in Brief as a Case</p>
 <p>Studying Data Publishing in Group Research: Taking the Data Articles in the Journal Data in Brief as a Case</p>
 <ol type="1">
@@ -193,11 +202,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Data in Brief is a multidisciplinary and peer-reviewed journal which publishes data papers and provides access to research data. If the dataset described in a data article was generated specifically for a research study, the journal will link the data article to the corresponding research article. The journal is selected as my data source as it is one of the most influential data journals that covers all disciplines, and it is requires the authors to provide a link to the research article which the data described in the data article was originally created for. The link between data article and researcharticle is key to my analysis. In this study, I limited the analysis to those data articles that are linked to a corresponding research article. I analyzed 4025 data articles published by Data in Brief from December 2014 to December 2022 and the 4025 corresponding research articles, focusing on author information. The data is collected through Scopus API. After collecting the data, I first made some essential cleaning, and then extracted the authors’ names, ranks, and their research disciplines for analysis.</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plot</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>input_data <span class="op">=</span> pd.read_csv(<span class="st">"../data/author_information.csv"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>input_data.sample()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plot</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>input_data <span class="op">=</span> pd.read_csv(<span class="st">"../data/author_information.csv"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>input_data.sample()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 
 <div>
@@ -242,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>input_data.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>input_data.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 
 <div>
@@ -346,29 +355,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>RBO, Jaccard, LevenshteinDistance &amp; LevenshteinRatio: These are three different indexes to compare the authors of a data article and those of a research article.</p>
 <p>The Figure-1 below presents the number of the selected data articles by year.</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> {}</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    doi <span class="op">=</span> input_data.iloc[i,<span class="dv">0</span>]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    year <span class="op">=</span> doi.split(<span class="st">"."</span>)[<span class="dv">3</span>]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> year <span class="kw">not</span> <span class="kw">in</span> years.keys():</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        years[year] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        years[year] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">5</span>))</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [k <span class="cf">for</span> k <span class="kw">in</span> years.keys()]</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="bu">sorted</span>(x, key <span class="op">=</span> <span class="bu">int</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [years[i] <span class="cf">for</span> i <span class="kw">in</span> time]</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plot.bar(time,y,color <span class="op">=</span> <span class="st">"orange"</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-1: Number of data articles published by year"</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plot.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> {}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    doi <span class="op">=</span> input_data.iloc[i,<span class="dv">0</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    year <span class="op">=</span> doi.split(<span class="st">"."</span>)[<span class="dv">3</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> year <span class="kw">not</span> <span class="kw">in</span> years.keys():</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        years[year] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        years[year] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">5</span>))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [k <span class="cf">for</span> k <span class="kw">in</span> years.keys()]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="bu">sorted</span>(x, key <span class="op">=</span> <span class="bu">int</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [years[i] <span class="cf">for</span> i <span class="kw">in</span> time]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plot.bar(time,y,color <span class="op">=</span> <span class="st">"orange"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-1: Number of data articles published by year"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plot.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['2019', '2016', '2018', '2017', '2015', '2021', '2020', '2014', '2022']</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="final_project-submission_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
+<p><img src="final_project-submission_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <ol start="3" type="1">
@@ -376,65 +385,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>The Figure-2 above shows the disciplinary distribution of the selected articles. The discipline of the selected articles is tagged by editors from Elsevier, with each article being classified into one of the following eight disciplines: biological sciences, geosciences, physics &amp; chemistry, medical sciences, social sciences &amp; humanities, computer &amp; mathematical sciences, and engineering. Biological sciences, medical sciences, and engineering have the most data articles, while computer &amp; mathematical sciences, social sciences &amp; humanities, and physics &amp; chemistry have the least. It is not surprising to see scholars from biological sciences and medical sciences publishing more articles than other disciplines, as research in these two disciplines is highly data-driven and experiment-driven, and scholars have a long tradition of opening and sharing their data. However, it is quite interesting to see that scholars from computer &amp; mathematical sciences publish the least number of data articles, especially given the fact that research in this discipline is thriving and also heavily relies on data and experimentation. One possible reason for this finding may be that scholars from computer &amp; mathematical sciences are still used to sharing data in their own way, such as using GitHub or the website of their labs.</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>subject_list <span class="op">=</span> {}</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> input_data.iloc[i,<span class="dv">7</span>] <span class="kw">in</span> subject_list.keys():</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>frequentwords <span class="op">=</span> <span class="bu">list</span>(subject_list.keys())[:<span class="dv">7</span>]</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>frequentvals <span class="op">=</span> <span class="bu">list</span>(subject_list.values())[:<span class="dv">7</span>]</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">5</span>))</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plot.pie(frequentvals, labels <span class="op">=</span> frequentwords, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%.2f%%</span><span class="st">'</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-2: Suject distribution of the selected articles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>subject_list <span class="op">=</span> {}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> input_data.iloc[i,<span class="dv">7</span>] <span class="kw">in</span> subject_list.keys():</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>frequentwords <span class="op">=</span> <span class="bu">list</span>(subject_list.keys())[:<span class="dv">7</span>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>frequentvals <span class="op">=</span> <span class="bu">list</span>(subject_list.values())[:<span class="dv">7</span>]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">5</span>))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plot.pie(frequentvals, labels <span class="op">=</span> frequentwords, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%.2f%%</span><span class="st">'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-2: Suject distribution of the selected articles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>Text(0.5, 1.0, 'Figure-2: Suject distribution of the selected articles')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="final_project-submission_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
+<p><img src="final_project-submission_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Of the selected articles, the average number of authors for data articles is 5.6, and the number for research articles is 6.3. Figure-3 is a histogram of the number of authors for the 4025 data articles. According to previous researches on the number of authors in papers published in papers, the average number of authors in the papers they studied is around 4-5, while the figure shows that over 60% of the selected research articles is a collaborative work of over 5 authors. It indicates that a larger research team prefer to publish a data article together with their research article.</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>thedata <span class="op">=</span> []</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  thedata.append(input_data.iloc[i,<span class="dv">5</span>])</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">5</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plot.hist(thedata, histtype <span class="op">=</span> <span class="st">"bar"</span>, bins <span class="op">=</span> <span class="dv">40</span>, color <span class="op">=</span> <span class="st">"orange"</span>, <span class="bu">range</span> <span class="op">=</span> (<span class="dv">1</span>,<span class="dv">40</span>))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-3 Distribution of the number of authors of the selected research articles"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plot.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>thedata <span class="op">=</span> []</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  thedata.append(input_data.iloc[i,<span class="dv">5</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">5</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plot.hist(thedata, histtype <span class="op">=</span> <span class="st">"bar"</span>, bins <span class="op">=</span> <span class="dv">40</span>, color <span class="op">=</span> <span class="st">"orange"</span>, <span class="bu">range</span> <span class="op">=</span> (<span class="dv">1</span>,<span class="dv">40</span>))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-3 Distribution of the number of authors of the selected research articles"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plot.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="final_project-submission_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+<p><img src="final_project-submission_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>2459 pairs of data and research articles have identical author information, while 1566 pairs have differing author information (as shown in Figure-4). Among the pairs with differing author information, 26 pairs have the same authors listed in a different sequence, while the others have at least one different author listed.</p>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>count_jaccard_the_same <span class="op">=</span> <span class="dv">0</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>different <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>count_ldistance <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> input_data.iloc[i,<span class="dv">8</span>] <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    count_ldistance <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>remain <span class="op">=</span> <span class="dv">4025</span> <span class="op">-</span> count_ldistance</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> input_data.iloc[i,<span class="dv">8</span>] <span class="op">!=</span> <span class="dv">1</span> <span class="kw">and</span> input_data.iloc[i,<span class="dv">9</span>] <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        count_jaccard_the_same <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> input_data.iloc[i,<span class="dv">8</span>] <span class="op">!=</span> <span class="dv">1</span> <span class="kw">and</span> input_data.iloc[i,<span class="dv">9</span>] <span class="op">!=</span> <span class="dv">1</span>:</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        different <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">5</span>))</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>thelabels <span class="op">=</span> [<span class="st">'Same authors in different ranking'</span>,<span class="st">'Same authors in same ranking'</span>, <span class="st">'Different authors'</span>]</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plot.pie([count_jaccard_the_same, count_ldistance, different], labels <span class="op">=</span> thelabels, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%.2f%%</span><span class="st">'</span>, startangle <span class="op">=</span> <span class="dv">90</span>, colors <span class="op">=</span> [<span class="st">"orange"</span>,<span class="st">"green"</span>,<span class="st">"skyblue"</span>])</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-4 Comparasion of author information between data and research articles"</span>)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>plot.show()</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_jaccard_the_same, count_ldistance, different)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>count_jaccard_the_same <span class="op">=</span> <span class="dv">0</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>different <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>count_ldistance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> input_data.iloc[i,<span class="dv">8</span>] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    count_ldistance <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>remain <span class="op">=</span> <span class="dv">4025</span> <span class="op">-</span> count_ldistance</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> input_data.iloc[i,<span class="dv">8</span>] <span class="op">!=</span> <span class="dv">1</span> <span class="kw">and</span> input_data.iloc[i,<span class="dv">9</span>] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        count_jaccard_the_same <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> input_data.iloc[i,<span class="dv">8</span>] <span class="op">!=</span> <span class="dv">1</span> <span class="kw">and</span> input_data.iloc[i,<span class="dv">9</span>] <span class="op">!=</span> <span class="dv">1</span>:</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        different <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">5</span>))</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>thelabels <span class="op">=</span> [<span class="st">'Same authors in different ranking'</span>,<span class="st">'Same authors in same ranking'</span>, <span class="st">'Different authors'</span>]</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plot.pie([count_jaccard_the_same, count_ldistance, different], labels <span class="op">=</span> thelabels, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%.2f%%</span><span class="st">'</span>, startangle <span class="op">=</span> <span class="dv">90</span>, colors <span class="op">=</span> [<span class="st">"orange"</span>,<span class="st">"green"</span>,<span class="st">"skyblue"</span>])</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-4 Comparasion of author information between data and research articles"</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>plot.show()</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_jaccard_the_same, count_ldistance, different)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="final_project-submission_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+<p><img src="final_project-submission_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>26 2459 1540</code></pre>
@@ -442,126 +451,126 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The majority of the selected pairs of data and research articles (3047 pairs) have the same number of authors, and more specifically, 87 pairs have the same single author (as shown in Figure-5). Among the 1566 pairs that have at least one different author, I noticed that the research article has more authors (in 739 pairs) or the same number of authors (in 588 pairs) than the corresponding data articles in most cases (as shown in Figure-4). I further compare the average number of authors by disciplines (as shown in Figure-6). Research articles is higher than data articles in average number of authors in all the 8 disciplines, which indicates that it is common that not all research participants will contribute to data publishing work in group research, yet in most cases the majority of team members are willing to participate in data sharing work.</p>
 <div class="cell" data-scrolled="true" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>count_a <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>count_b <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>count_c <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>tcount <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">4025</span>):</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> input_data.iloc[i,<span class="dv">4</span>]</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> input_data.iloc[i,<span class="dv">5</span>]</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> input_data.iloc[i,<span class="dv">8</span>] <span class="op">!=</span> <span class="dv">1</span>:</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        tcount <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> m <span class="op">&gt;</span> n:</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>            count_a <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> m <span class="op">&lt;</span> n:</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            count_b <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> m <span class="op">==</span> n:</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>            count_c <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_a,count_b, count_c, tcount)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> [count_a,count_b, count_c]</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">5</span>))</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>thelabels <span class="op">=</span> [<span class="st">'Data article has more authors'</span>, <span class="st">'Research article has more authors'</span>, <span class="st">'Have the same number of authors'</span>]</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>plot.pie(m, labels <span class="op">=</span> thelabels, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%.2f%%</span><span class="st">'</span>, startangle <span class="op">=</span> <span class="dv">90</span>, colors <span class="op">=</span> [<span class="st">"orange"</span>,<span class="st">"lightgreen"</span>,<span class="st">"skyblue"</span>])</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-5 Comparasion of author numbers in articles that are written by different authors"</span>)</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>plot.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>count_a <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>count_b <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>count_c <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>tcount <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">4025</span>):</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> input_data.iloc[i,<span class="dv">4</span>]</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> input_data.iloc[i,<span class="dv">5</span>]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> input_data.iloc[i,<span class="dv">8</span>] <span class="op">!=</span> <span class="dv">1</span>:</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        tcount <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> m <span class="op">&gt;</span> n:</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>            count_a <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> m <span class="op">&lt;</span> n:</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>            count_b <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> m <span class="op">==</span> n:</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>            count_c <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_a,count_b, count_c, tcount)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> [count_a,count_b, count_c]</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">5</span>))</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>thelabels <span class="op">=</span> [<span class="st">'Data article has more authors'</span>, <span class="st">'Research article has more authors'</span>, <span class="st">'Have the same number of authors'</span>]</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>plot.pie(m, labels <span class="op">=</span> thelabels, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%.2f%%</span><span class="st">'</span>, startangle <span class="op">=</span> <span class="dv">90</span>, colors <span class="op">=</span> [<span class="st">"orange"</span>,<span class="st">"lightgreen"</span>,<span class="st">"skyblue"</span>])</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-5 Comparasion of author numbers in articles that are written by different authors"</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>plot.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>239 739 588 1566</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="final_project-submission_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+<p><img src="final_project-submission_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>subject_list <span class="op">=</span> {}</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>dataauthor_list <span class="op">=</span> {}</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>average_dataauthor <span class="op">=</span> {}</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>researchauthor_list <span class="op">=</span> {}</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>average_researchauthor <span class="op">=</span> {}</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> input_data.iloc[i,<span class="dv">7</span>] <span class="kw">in</span> subject_list.keys():</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        dataauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> dataauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> input_data.iloc[i,<span class="dv">4</span>] </span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        researchauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span>  researchauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> input_data.iloc[i,<span class="dv">5</span>] </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: </span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        dataauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> input_data.iloc[i,<span class="dv">4</span>]</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        researchauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> input_data.iloc[i,<span class="dv">5</span>]</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> subject_list.keys():</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    average_dataauthor[i] <span class="op">=</span> dataauthor_list[i]<span class="op">/</span>subject_list[i]</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    average_researchauthor[i] <span class="op">=</span> researchauthor_list[i]<span class="op">/</span>subject_list[i] </span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>frequent_da_words <span class="op">=</span> <span class="bu">list</span>(average_dataauthor.keys())[:<span class="dv">7</span>]</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>frequent_da_vals <span class="op">=</span> <span class="bu">list</span>(average_dataauthor.values())[:<span class="dv">7</span>]</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>frequent_ra_words <span class="op">=</span> <span class="bu">list</span>(average_researchauthor.keys())[:<span class="dv">7</span>]</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>frequent_ra_vals <span class="op">=</span> <span class="bu">list</span>(average_researchauthor.values())[:<span class="dv">7</span>]</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">7</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(size)</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize<span class="op">=</span>(<span class="dv">21</span>,<span class="dv">5</span>))</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>total_width, n <span class="op">=</span> <span class="fl">1.2</span>, <span class="dv">6</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> total_width <span class="op">/</span> n</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">-</span> (total_width <span class="op">-</span> width) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>plot.bar(x<span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>width, frequent_da_vals,  width<span class="op">=</span>width, label<span class="op">=</span><span class="st">'Data article authors number'</span>, color <span class="op">=</span> <span class="st">"orange"</span>)</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>plot.bar(x<span class="op">+</span><span class="fl">0.5</span><span class="op">*</span>width, frequent_ra_vals,  width<span class="op">=</span>width, label<span class="op">=</span><span class="st">'Research article authors number'</span>, color <span class="op">=</span><span class="st">"red"</span>)</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>plot.xticks(x,frequent_ra_words)</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-6 Analysis of average author number among different disciplines"</span>)</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>plot.ylim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>plot.legend()</span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>plot.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>subject_list <span class="op">=</span> {}</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>dataauthor_list <span class="op">=</span> {}</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>average_dataauthor <span class="op">=</span> {}</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>researchauthor_list <span class="op">=</span> {}</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>average_researchauthor <span class="op">=</span> {}</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> input_data.iloc[i,<span class="dv">7</span>] <span class="kw">in</span> subject_list.keys():</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        dataauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> dataauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> input_data.iloc[i,<span class="dv">4</span>] </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        researchauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span>  researchauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> input_data.iloc[i,<span class="dv">5</span>] </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        dataauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> input_data.iloc[i,<span class="dv">4</span>]</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>        researchauthor_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> input_data.iloc[i,<span class="dv">5</span>]</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> subject_list.keys():</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    average_dataauthor[i] <span class="op">=</span> dataauthor_list[i]<span class="op">/</span>subject_list[i]</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    average_researchauthor[i] <span class="op">=</span> researchauthor_list[i]<span class="op">/</span>subject_list[i] </span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>frequent_da_words <span class="op">=</span> <span class="bu">list</span>(average_dataauthor.keys())[:<span class="dv">7</span>]</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>frequent_da_vals <span class="op">=</span> <span class="bu">list</span>(average_dataauthor.values())[:<span class="dv">7</span>]</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>frequent_ra_words <span class="op">=</span> <span class="bu">list</span>(average_researchauthor.keys())[:<span class="dv">7</span>]</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>frequent_ra_vals <span class="op">=</span> <span class="bu">list</span>(average_researchauthor.values())[:<span class="dv">7</span>]</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(size)</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize<span class="op">=</span>(<span class="dv">21</span>,<span class="dv">5</span>))</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>total_width, n <span class="op">=</span> <span class="fl">1.2</span>, <span class="dv">6</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> total_width <span class="op">/</span> n</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">-</span> (total_width <span class="op">-</span> width) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>plot.bar(x<span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>width, frequent_da_vals,  width<span class="op">=</span>width, label<span class="op">=</span><span class="st">'Data article authors number'</span>, color <span class="op">=</span> <span class="st">"orange"</span>)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>plot.bar(x<span class="op">+</span><span class="fl">0.5</span><span class="op">*</span>width, frequent_ra_vals,  width<span class="op">=</span>width, label<span class="op">=</span><span class="st">'Research article authors number'</span>, color <span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>plot.xticks(x,frequent_ra_words)</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-6 Analysis of average author number among different disciplines"</span>)</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>plot.ylim(<span class="dv">0</span>,<span class="dv">10</span>)</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>plot.legend()</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>plot.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="final_project-submission_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+<p><img src="final_project-submission_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>I also try to measure and demonstrate the difference between the author information of data article and research article. Three metrics, RBO similarity, Jaccard index, and Levenshtein Distance. Here I demonstrate the results of RBO similarity. RBO similarity is a similarity measure for indefinite rankings which was proposed by William Webber, Alistiar Moffat, and Justin Zobel in 2010. The measure of similarity handles non-conjointness and weights high ranks more heavily than low. The RBO similarity range from 0 to 1, in which 0 indicates that the two sequences are totally different while 1 indicates they are 100% the same. As shown in figure-7, I notice a high RBO similarity (over 0.8) in all the 8 disciplines, which confirms the previous finding that in most cases the majority of team members are willing to participate in data sharing work. Furthermore, engineering and physics &amp; chemistry have a significantly higher RBO similarity than the other disciplines, which indicates that members of their research teams have a higher degree of participation in data publishing work.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>subject_list <span class="op">=</span> {}</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>rbo_list <span class="op">=</span> {}</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>averagerbo <span class="op">=</span> {}</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> input_data.iloc[i,<span class="dv">7</span>] <span class="kw">in</span> subject_list.keys():</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        rbo_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> rbo_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> input_data.iloc[i,<span class="dv">8</span>] </span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        rbo_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> input_data.iloc[i,<span class="dv">8</span>]</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> subject_list.keys():</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    averagerbo[i] <span class="op">=</span> rbo_list[i]<span class="op">/</span>subject_list[i]</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>frequentwords <span class="op">=</span> <span class="bu">list</span>(averagerbo.keys())[:<span class="dv">7</span>]</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>frequentvals <span class="op">=</span> <span class="bu">list</span>(averagerbo.values())[:<span class="dv">7</span>]</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">5</span>))</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>plot.barh(frequentwords, frequentvals, color <span class="op">=</span> [<span class="st">"#4CAF50"</span>,<span class="st">"red"</span>,<span class="st">"hotpink"</span>,<span class="st">"#556B2F"</span>, <span class="st">"blue"</span>, <span class="st">"grey"</span>])</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure 7 Comparasion of RBO similarity among disciplines"</span>)</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>plot.xlim(<span class="fl">0.8</span>,<span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>subject_list <span class="op">=</span> {}</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>rbo_list <span class="op">=</span> {}</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>averagerbo <span class="op">=</span> {}</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">4025</span>):</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> input_data.iloc[i,<span class="dv">7</span>] <span class="kw">in</span> subject_list.keys():</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        rbo_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> rbo_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">+</span> input_data.iloc[i,<span class="dv">8</span>] </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        subject_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        rbo_list[input_data.iloc[i,<span class="dv">7</span>]] <span class="op">=</span> input_data.iloc[i,<span class="dv">8</span>]</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> subject_list.keys():</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    averagerbo[i] <span class="op">=</span> rbo_list[i]<span class="op">/</span>subject_list[i]</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>frequentwords <span class="op">=</span> <span class="bu">list</span>(averagerbo.keys())[:<span class="dv">7</span>]</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>frequentvals <span class="op">=</span> <span class="bu">list</span>(averagerbo.values())[:<span class="dv">7</span>]</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>plot.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">5</span>))</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>plot.barh(frequentwords, frequentvals, color <span class="op">=</span> [<span class="st">"#4CAF50"</span>,<span class="st">"red"</span>,<span class="st">"hotpink"</span>,<span class="st">"#556B2F"</span>, <span class="st">"blue"</span>, <span class="st">"grey"</span>])</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure 7 Comparasion of RBO similarity among disciplines"</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>plot.xlim(<span class="fl">0.8</span>,<span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>(0.8, 0.9)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="final_project-submission_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
+<p><img src="final_project-submission_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>I finally focus on the pairs of research articles and their corresponding data articles that are different in author information to compare the rankings of authors. Among the 627 data articles analyzed, more authors receive a lower ranking in the corresponding research article, while in 314 data articles, more authors receive a higher ranking in the research article. Specifically, for each person listed as an author of both a data article and its corresponding research article, I compare their ranking in both articles. Of the total cases, 1,518 authors had a higher ranking in the research article, while 2,119 authors had a lower ranking. The distribution of ranking differences is shown in Figure 8, with negative values indicating that the author’s ranking in the research article is lower than in the data article, and positive values indicating the opposite. As seen in Figure 8, the distribution is biased towards the left side, confirming that more often than not, a data article author receives a lower ranking in the corresponding research article. In further analysis, I also observe that while the majority of data article authors receive the same or higher ranking in the corresponding research article, those who has a higher ranking in the data article is more likely to have a lower ranking in the research article.</p>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>input_data_2 <span class="op">=</span> pd.read_csv(<span class="st">"../data/data_for_ranking_comparasion.csv"</span>) </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7608</span>):</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    difference.append(<span class="op">-</span>input_data_2.iloc[i,<span class="dv">4</span>])</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plot.hist(difference,bins <span class="op">=</span> <span class="dv">80</span>, rwidth <span class="op">=</span> <span class="dv">1</span>,log <span class="op">=</span> <span class="va">True</span>, <span class="bu">range</span> <span class="op">=</span> (<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>))</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-8 Ranking difference between data articles and relevant research articles"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plot.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>input_data_2 <span class="op">=</span> pd.read_csv(<span class="st">"../data/data_for_ranking_comparasion.csv"</span>) </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7608</span>):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    difference.append(<span class="op">-</span>input_data_2.iloc[i,<span class="dv">4</span>])</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plot.hist(difference,bins <span class="op">=</span> <span class="dv">80</span>, rwidth <span class="op">=</span> <span class="dv">1</span>,log <span class="op">=</span> <span class="va">True</span>, <span class="bu">range</span> <span class="op">=</span> (<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plot.title(<span class="st">"Figure-8 Ranking difference between data articles and relevant research articles"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plot.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="final_project-submission_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+<p><img src="final_project-submission_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <ol start="4" type="1">
